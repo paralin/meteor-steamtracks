@@ -44,7 +44,9 @@ class SteamTracks
     res.data.result
 
   generateSignupToken:(steamID) ->
-    res = @sendRequest "signup/token", {steamid32: steamID, return_steamid32: true}
+    options = {return_steamid32: true}
+    options["steamid32"] = steamID if steamID?
+    res = @sendRequest "signup/token", options
     res.data.result.token
   getSignupStatus:(token)->
     res = @sendRequest "signup/status", {token: token}
