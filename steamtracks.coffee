@@ -3,17 +3,20 @@ class SteamTracks
   constructor: (@key, @secret)->
     
   hashPayload: (json)->
-    return crypto.createHmac('sha1', @secret).update(json).digest('hex')
+    return crypto.createHmac('sha1', @secret).update(json).digest('base64')
   sendRequest: (method, params)->
+    params = params || {}
+    params["t"] = Math.round(new Date().getTime() / 1000)
     json = EJSON.stringify params
+    signature = @hashPayload json
     headers = {
       'ACCEPT': 'application/json'
       'Content-Type': 'application/json'
       'SteamTracks-Key': @key
-      'SteamTracks-Signature': @hashPayload json
-      't': new Date().getTime()
+      'SteamTracks-Signature': signature
     }
-    HTTP.post 'https://steamtracks.com/api/v1/'+method, {data: json, headers: headers}
+    url = 'https://steamtracks.com/api/v1/users'
+    HTTP.get 'https://steamtracks.com/api/v1/'+method, {data: {payload: json}, headers: headers}
 
   listUsers: (page)->
     page = page || 1
