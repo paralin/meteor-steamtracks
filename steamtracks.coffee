@@ -6,12 +6,13 @@ class SteamTracks
     return crypto.createHmac('sha1', @secret).update(json).digest('hex')
   sendRequest: (method, params)->
     json = EJSON.stringify params
-    headers =
-      ACCEPT: 'application/json'
-      Content-Type: 'application/json'
-      SteamTracks-Key: @key
-      SteamTracks-Signature: hashPayload json
-      t: new Date().getTime()
+    headers = {
+      'ACCEPT': 'application/json'
+      'Content-Type': 'application/json'
+      'SteamTracks-Key': @key
+      'SteamTracks-Signature': hashPayload json
+      't': new Date().getTime()
+    }
     HTTP.post 'https://steamtracks.com/api/v1/'+method, {data: json, headers: headers}
 
   listUsers: (page)->
