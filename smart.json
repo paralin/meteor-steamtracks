@@ -1,7 +1,7 @@
 {
   "name": "steamtracks",
   "description": "SteamTracks: the modern steam API.",
-  "homepage": "",
+  "homepage": "http://steamtracks.com/",
   "author": "Christian Stewart <kidovate@gmail.com>",
   "version": "0.0.1",
   "git": "https://github.com/kidovate/meteor-steamtracks.git",
