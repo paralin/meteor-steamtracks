@@ -10,7 +10,7 @@ class SteamTracks
       'ACCEPT': 'application/json'
       'Content-Type': 'application/json'
       'SteamTracks-Key': @key
-      'SteamTracks-Signature': hashPayload json
+      'SteamTracks-Signature': @hashPayload json
       't': new Date().getTime()
     }
     HTTP.post 'https://steamtracks.com/api/v1/'+method, {data: json, headers: headers}
