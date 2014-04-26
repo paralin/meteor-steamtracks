@@ -1,0 +1,9 @@
+{
+  "name": "steamtracks",
+  "description": "SteamTracks: the modern steam API.",
+  "homepage": "",
+  "author": "Christian Stewart <kidovate@gmail.com>",
+  "version": "0.0.1",
+  "git": "https://github.com/kidovate/meteor-steamtracks.git",
+  "packages": {}
+}
