@@ -18,7 +18,7 @@ class SteamTracks
     }
     url = 'https://steamtracks.com/api/v1/'+method
     console.log "SteamTracks request, url #{url}, headers #{headers}, data #{json}, signature #{signature}." if @debug
-    HTTP.get url, {data: {payload: json}, headers: headers}
+    HTTP.post url, {data: json, headers: headers}
 
   listUsers: (page)->
     page = page || 1

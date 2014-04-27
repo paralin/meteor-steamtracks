@@ -3,7 +3,7 @@
   "description": "SteamTracks: the modern steam API.",
   "homepage": "http://steamtracks.com/",
   "author": "Christian Stewart <kidovate@gmail.com>",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "git": "https://github.com/kidovate/meteor-steamtracks.git",
   "packages": {}
 }
