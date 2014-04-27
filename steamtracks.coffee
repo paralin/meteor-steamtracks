@@ -1,6 +1,7 @@
 crypto = Npm.require "crypto"
 class SteamTracks
-  constructor: (@key, @secret)->
+  constructor: (@key, @secret, debug)->
+    @debug = debug? && debug is true
     
   hashPayload: (json)->
     return crypto.createHmac('sha1', @secret).update(json).digest('base64')
@@ -15,8 +16,9 @@ class SteamTracks
       'SteamTracks-Key': @key
       'SteamTracks-Signature': signature
     }
-    url = 'https://steamtracks.com/api/v1/users'
-    HTTP.get 'https://steamtracks.com/api/v1/'+method, {data: {payload: json}, headers: headers}
+    url = 'https://steamtracks.com/api/v1/'+method
+    console.log "SteamTracks request, url #{url}, headers #{headers}, data #{json}, signature #{signature}." if @debug
+    HTTP.get url, {data: {payload: json}, headers: headers}
 
   listUsers: (page)->
     page = page || 1
